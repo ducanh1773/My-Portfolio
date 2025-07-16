@@ -1,28 +1,33 @@
 "use client";
 import Link from "next/link";
 import { FaEnvelope, FaFacebook, FaLinkedin, FaGithub, FaPhone, FaBirthdayCake, FaMapMarkerAlt } from "react-icons/fa";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations";
 
 export default function Contact() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#334155] py-12 px-4">
       <div className="bg-[#0f172a]/95 border border-[#334155] rounded-2xl shadow-xl p-8 w-full max-w-xl">
-        <h1 className="text-3xl font-bold text-[#60a5fa] mb-6 text-center">Liên hệ với tôi</h1>
+        <h1 className="text-3xl font-bold text-[#60a5fa] mb-6 text-center">{t.contactTitle}</h1>
         <div className="space-y-5 text-[#cbd5e1]">
           <div className="flex items-center gap-3">
             <FaPhone className="text-[#60a5fa] text-xl" />
-            <span>0981170703</span>
+            <span>{t.phone}</span>
           </div>
           <div className="flex items-center gap-3">
             <FaEnvelope className="text-[#60a5fa] text-xl" />
-            <span>anhductrannguyen170703@gmail.com</span>
+            <span>{t.email}</span>
           </div>
           <div className="flex items-center gap-3">
             <FaBirthdayCake className="text-[#60a5fa] text-xl" />
-            <span>17/07/2003</span>
+            <span>{t.birthday}</span>
           </div>
           <div className="flex items-center gap-3">
             <FaMapMarkerAlt className="text-[#60a5fa] text-xl" />
-            <span>Đống Đa, Hà Nội</span>
+            <span>{t.location}</span>
           </div>
         </div>
         <div className="flex justify-center gap-6 mt-8">

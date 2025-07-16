@@ -5,8 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import AOS from "aos";
+import { useLanguage } from "./contexts/LanguageContext";
+import { translations } from "./translations";
 
 export default function Home() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   useEffect(() => {
     AOS.init({
       once: false,
@@ -25,13 +30,6 @@ export default function Home() {
         {/* Avatar + Social */}
         <div className="flex flex-col items-center md:items-end w-full md:w-1/2">
           <div className="rounded-b-[120px] rounded-t-[120px] overflow-hidden bg-gradient-to-b from-[#1e40af] to-[#1d4ed8] p-2 w-72 h-96 flex items-center justify-center border-4 border-[#3b82f6] shadow-xl">
-            <Image
-              src="/avatar.jpg"
-              alt="avatar"
-              width={250}
-              height={320}
-              className="object-cover h-full w-full"
-            />
           </div>
           <div className="flex flex-col items-center mt-6 space-y-4 md:space-y-6">
             <Link
@@ -62,12 +60,12 @@ export default function Home() {
         </div>
         {/* Info */}
         <div className="flex flex-col items-center md:items-start w-full md:w-1/2 mt-10 md:mt-0 md:pl-16">
-          <p className="text-lg text-[#94a3b8] mb-2">Xin chào! Tôi là</p>
+          <p className="text-lg text-[#94a3b8] mb-2">{t.greeting}</p>
           <h1 className="text-5xl font-bold text-[#60a5fa] mb-2 drop-shadow">
-            Nguyễn Trần Đức Anh
+            {t.name}
           </h1>
           <h2 className="text-2xl text-[#cbd5e1] mb-6 tracking-widest">
-            WEB DEVELOPER
+            {t.title}
           </h2>
           <div className="w-16 h-1 bg-[#3b82f6] mb-8"></div>
           <div className="flex space-x-4">
@@ -75,14 +73,14 @@ export default function Home() {
               href="/about"
               className="px-6 py-2 border-2 border-[#3b82f6] rounded-full text-[#60a5fa] font-semibold hover:bg-[#1e293b] transition"
             >
-              Giới thiệu
+              {t.about}
             </Link>
             <a
               href="/cv.pdf"
               download
               className="px-6 py-2 bg-gradient-to-r from-[#3b82f6] to-[#1d4ed8] text-white rounded-full font-semibold shadow hover:from-[#2563eb] hover:to-[#1e40af] transition"
             >
-              Tải CV
+              {t.downloadCV}
             </a>
           </div>
         </div>
@@ -95,7 +93,7 @@ export default function Home() {
       >
         <div className="w-full max-w-4xl">
           <div className="font-bold mb-8 text-3xl text-[#60a5fa] text-center">
-            Skills & Technologies
+            {t.skillsTitle}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -109,7 +107,7 @@ export default function Home() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#3b82f6] to-[#1d4ed8] rounded-full flex items-center justify-center mx-auto mb-3">
                   <i className="fas fa-code text-white text-lg"></i>
                 </div>
-                <h3 className="text-lg font-bold text-[#60a5fa]">Frontend</h3>
+                <h3 className="text-lg font-bold text-[#60a5fa]">{t.frontend}</h3>
               </div>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between items-center">
@@ -137,7 +135,7 @@ export default function Home() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#0ea5e9] to-[#0284c7] rounded-full flex items-center justify-center mx-auto mb-3">
                   <i className="fas fa-server text-white text-lg"></i>
                 </div>
-                <h3 className="text-lg font-bold text-[#0ea5e9]">Backend</h3>
+                <h3 className="text-lg font-bold text-[#0ea5e9]">{t.backend}</h3>
               </div>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between items-center">
@@ -165,7 +163,7 @@ export default function Home() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#d97706] to-[#b45309] rounded-full flex items-center justify-center mx-auto mb-3">
                   <i className="fas fa-database text-white text-lg"></i>
                 </div>
-                <h3 className="text-lg font-bold text-[#d97706]">Database</h3>
+                <h3 className="text-lg font-bold text-[#d97706]">{t.database}</h3>
               </div>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between items-center">
@@ -193,7 +191,7 @@ export default function Home() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-full flex items-center justify-center mx-auto mb-3">
                   <i className="fas fa-tools text-white text-lg"></i>
                 </div>
-                <h3 className="text-lg font-bold text-[#10b981]">Tools</h3>
+                <h3 className="text-lg font-bold text-[#10b981]">{t.tools}</h3>
               </div>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between items-center">
@@ -221,7 +219,7 @@ export default function Home() {
       >
         <div className="w-full max-w-4xl">
           <div className="font-bold mb-8 text-3xl text-[#60a5fa] text-center">
-            Work Experience
+            {t.experienceTitle}
           </div>
 
           <div className="space-y-6">
@@ -243,11 +241,11 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-[#60a5fa]">
-                    UNETI University
+                    {t.unetiUniversity}
                   </h3>
-                  <p className="text-[#94a3b8] text-sm">08/2021 - 6/2025</p>
+                  <p className="text-[#94a3b8] text-sm">{t.period}</p>
                   <p className="text-[#cbd5e1] font-semibold">
-                    Information Technology
+                    {t.informationTechnology}
                   </p>
                 </div>
               </div>
