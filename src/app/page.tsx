@@ -76,7 +76,7 @@ export default function Home() {
               {t.about}
             </Link>
             <a
-              href="/cv.pdf"
+              href="/Nguyễn_Trần_Đức_Anh- Application Intern Back-end Developer.pdf"
               download
               className="px-6 py-2 bg-gradient-to-r from-[#3b82f6] to-[#1d4ed8] text-white rounded-full font-semibold shadow hover:from-[#2563eb] hover:to-[#1e40af] transition"
             >
